@@ -1,0 +1,95 @@
+[tool.poetry]
+name = "python-starter"
+version = "0.1.0"
+description = "A basic Python starter project with best practices configuration"
+authors = ["Jesús Torres <jesust07@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+black = "23.3.0"
+isort = "5.12.0"
+ruff = "0.0.262"
+mypy = "1.5.0"
+pyright = "^1.1.315"
+pre-commit = "2.21.0"
+
+[tool.poetry.scripts]
+format = "sh -c 'black . && isort .'"
+lint = "sh -c 'ruff check --fix .'"
+typecheck = "sh -c 'mypy .'"
+pyrightcheck = "sh -c 'pyright .'"
+
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+multi_line_output = 3
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+select = ["E", "F", "I", "UP", "D"]
+ignore = []
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.pyright]
+typeCheckingMode = "strict"
+reportUnknownVariableType = true
+reportUnknownMemberType = true
+reportMissingTypeStubs = true
+reportImplicitTypeAliasing = true
+reportMissingTypeArgument = true
+pythonVersion = "3.10"
+
+[tool.mypy]
+strict = true
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+strict_optional = true
+# Additional conditions
+disallow_any_generics = true    # Dont allow Any in types for example List[Any]
+disallow_subclassing_any = true # Dont allow any subclasses
+disallow_untyped_calls = true   # Dont allow call to functions without types
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = "pytest.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "numpy.*"
+follow_imports = "skip"
