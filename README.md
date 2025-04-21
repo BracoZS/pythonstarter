@@ -2,6 +2,8 @@
 
 A basic Python starter project with configurations for code formatting, linting, and type checking.
 
+This project is a fork of [pythonstarter](https://codeberg.org/jesustorresml07/pythonstarter).
+
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![Poetry](https://img.shields.io/badge/poetry-managed-blueviolet)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
